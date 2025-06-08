@@ -6,12 +6,10 @@ from common.model import AliasBaseModel
 
 
 class GameModel(AliasBaseModel):
-    __tablename__: str = 'games'
+    __tablename__: str = "games"
 
     round_duration: Mapped[int]  # seconds
-    word_categories: Mapped[list[CategoryEnum]] = mapped_column(
-        ARRAY(CategoryEnum)
-    )
+    word_categories: Mapped[list[CategoryEnum]] = mapped_column(ARRAY(CategoryEnum))
     teams: Mapped[list["TeamModel"]] = relationship(
         argument="TeamModel",
         back_populates="game",

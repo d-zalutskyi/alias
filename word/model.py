@@ -5,7 +5,7 @@ from common.model import AliasBaseModel
 
 
 class WordModel(AliasBaseModel):
-    __tablename__: str = 'words'
+    __tablename__: str = "words"
 
     category: Mapped[CategoryEnum]
     word: Mapped[str] = mapped_column(unique=True)
