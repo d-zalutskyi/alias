@@ -1,0 +1,18 @@
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import Mapped, relationship, mapped_column
+
+from common.model import AliasBaseModel
+
+
+class TeamModel(AliasBaseModel):
+    __tablename__: str = "teams"
+
+    game_id: Mapped[int] = mapped_column(ForeignKey("games.id"))
+    game: Mapped["GameModel"] = relationship(
+        argument="GameModel",
+        back_populates="teams",
+    )
+    members: Mapped[list["MemberModel"]] = relationship(
+        argument="MemberModel",
+        back_populates="team",
+    )
