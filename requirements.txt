@@ -17,3 +17,4 @@ alembic==1.15.2
 # ------------ External libs ------------
 tenacity==9.1.2
 dependency_injector==4.47.1
+attr==0.3.2

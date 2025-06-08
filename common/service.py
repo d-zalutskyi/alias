@@ -1,6 +1,8 @@
-from container import container
+import attr
+
+from common.manager import RequestsRepo
 
 
+@attr.s(auto_attribs=True)
 class BaseService:
-    def __init__(self) -> None:
-        self.repo = container.requests_repo
+    requests_repo: RequestsRepo
