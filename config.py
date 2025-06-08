@@ -14,6 +14,7 @@ class SettingsConfig(BaseSettings):
     POSTGRES_HOST: str
     INNER_POSTGRES_PORT: int
     OUTER_POSTGRES_PORT: int
+    DEBUG: str
 
     @property
     def database_connection(self) -> str:
