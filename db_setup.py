@@ -2,19 +2,16 @@ from sqlalchemy.ext.asyncio import (
     AsyncEngine,
     AsyncSession,
     async_sessionmaker,
-    create_async_engine
+    create_async_engine,
 )
 
 from config import config
 
 
 class DatabaseSetup:
-
     @classmethod
     def setup(
-            cls,
-            echo: bool = False,
-            expire: bool = False
+        cls, echo: bool = False, expire: bool = False
     ) -> async_sessionmaker[AsyncSession]:
         engine: AsyncEngine = cls._create_engine(echo=echo)
         return cls._create_session_pool(engine=engine, expire=expire)
@@ -32,8 +29,6 @@ class DatabaseSetup:
 
     @classmethod
     def _create_session_pool(
-            cls,
-            engine: AsyncEngine,
-            expire: bool = False
+        cls, engine: AsyncEngine, expire: bool = False
     ) -> async_sessionmaker[AsyncSession]:
         return async_sessionmaker(bind=engine, expire_on_commit=expire)
