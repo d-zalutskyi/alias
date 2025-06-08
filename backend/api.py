@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from tenacity import retry, stop_after_attempt, wait_fixed
 from fastapi.middleware.cors import CORSMiddleware
 from backend.routers.router import base_router
-from db_setup import DatabaseSetup
+from container import container
 
 
 app = FastAPI()
@@ -24,4 +24,4 @@ app.add_middleware(
 @retry(stop=stop_after_attempt(5), wait=wait_fixed(2))
 @app.on_event("startup")
 async def startup_event():
-    await DatabaseSetup.setup(echo=True)
+    await container.init_resources()

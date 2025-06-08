@@ -14,14 +14,10 @@ class BaseRepo(Generic[ModelType]):
         self.session: AsyncSession = session
 
     async def get_by(
-            self,
-            sorting_word: FindByEnum,
-            value: Any,
-            many: bool = False
+        self, sorting_word: FindByEnum, value: Any, many: bool = False
     ) -> ModelType | list[ModelType] | None:
-        stmt: Select = (
-            select(self.MODEL)
-            .where(getattr(self.MODEL, sorting_word.value) == value)
+        stmt: Select = select(self.MODEL).where(
+            getattr(self.MODEL, sorting_word.value) == value
         )
         result: Result = await self.session.execute(stmt)
         if many:
@@ -30,14 +26,14 @@ class BaseRepo(Generic[ModelType]):
         return result.scalar_one_or_none()
 
     async def get_by_extended(
-            self,
-            filters: dict[FindByEnum, Any],
-            many: bool = False,
-            unique: bool = False,
-            order_by: str | None = None,
-            limit: int | None = None,
-            offset: int | None = None,
-            options: list[Any] | None = None
+        self,
+        filters: dict[FindByEnum, Any],
+        many: bool = False,
+        unique: bool = False,
+        order_by: str | None = None,
+        limit: int | None = None,
+        offset: int | None = None,
+        options: list[Any] | None = None,
     ) -> ModelType | list[ModelType] | None:
         stmt: Select = select(self.MODEL)
 
@@ -62,15 +58,17 @@ class BaseRepo(Generic[ModelType]):
             stmt = stmt.offset(offset)
 
         result: Result = await self.session.execute(stmt)
-        scalars: ScalarResult = result.unique().scalars() if unique else result.scalars()
+        scalars: ScalarResult = (
+            result.unique().scalars() if unique else result.scalars()
+        )
         return scalars.all() if many else scalars.first()
 
     async def update_by(
-            self,
-            sorting_word: FindByEnum | None,
-            value: Any | None,
-            update_data: dict[str, Any],
-            is_return: bool = False,
+        self,
+        sorting_word: FindByEnum | None,
+        value: Any | None,
+        update_data: dict[str, Any],
+        is_return: bool = False,
     ) -> ModelType | None:
         stmt: Update = (
             update(self.MODEL)
