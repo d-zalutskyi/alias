@@ -16,4 +16,3 @@ alembic==1.15.2
 
 # ------------ External libs ------------
 tenacity==9.1.2
-

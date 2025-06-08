@@ -12,3 +12,9 @@ class CategoryEnum(StrEnum):
     TECH = "tech"
     EMOTIONS = "emotions"
     FUN = "fun"
+    EIGHTEEN_PLUS = "eighteen_plus"
+
+
+class FindByEnum(StrEnum):
+    ID = "id"
+    CATEGORY = "category"

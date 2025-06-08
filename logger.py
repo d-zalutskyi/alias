@@ -17,7 +17,7 @@ class Logger:
         formatter = logging.Formatter(
             "%(asctime)s | %(levelname)-8s | %(name)s | "
             "%(filename)s:%(lineno)d | %(funcName)s() | %(message)s",
-            "%Y-%m-%d %H:%M:%S"
+            "%Y-%m-%d %H:%M:%S",
         )
 
         console_handler = logging.StreamHandler(sys.stdout)

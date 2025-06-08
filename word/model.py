@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Mapped, mapped_column
 
-from common.enums import CategoryEnum
+from common.enum import CategoryEnum
 from common.model import AliasBaseModel
 
 
