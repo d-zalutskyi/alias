@@ -8,6 +8,7 @@ WORKDIR /app
 COPY requirements.txt .
 
 RUN pip install --upgrade pip && \
+    pip install --upgrade pip enum34 &&\
     pip install -r requirements.txt
 
 COPY . .
