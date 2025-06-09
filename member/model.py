@@ -8,8 +8,5 @@ class MemberModel(AliasBaseModel):
     __tablename__: str = "members"
 
     name: Mapped[str]
-    team_id: Mapped[int] = mapped_column(ForeignKey("teams.id"))
-    team: Mapped["TeamModel"] = relationship(
-        argument="TeamModel",
-        back_populates="members",
-    )
+    team_id: Mapped[int | None] = mapped_column(ForeignKey("teams.id"), nullable=True)
+    team: Mapped["TeamModel"] = relationship(back_populates="members")
