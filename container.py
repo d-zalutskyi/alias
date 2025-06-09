@@ -3,6 +3,7 @@ from common.manager import RequestsRepo
 from common.service import BaseService
 from db_setup import DatabaseSetup
 from game.service import GameService
+from team.service import TeamService
 
 
 class Container(containers.DeclarativeContainer):
@@ -25,6 +26,10 @@ class Container(containers.DeclarativeContainer):
     )
     game_service = providers.Factory(
         GameService,
+        requests_repo=requests_repo,
+    )
+    team_service = providers.Factory(
+        TeamService,
         requests_repo=requests_repo,
     )
 

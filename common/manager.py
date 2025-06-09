@@ -4,6 +4,7 @@ from propcache import cached_property
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from game.repository import GameRepo
+from team.repository import TeamRepo
 
 
 @dataclass
@@ -13,6 +14,10 @@ class RequestsRepo:
     @cached_property
     def game_repo(self) -> GameRepo:
         return GameRepo(session=self.session)
+
+    @cached_property
+    def team_repo(self) -> TeamRepo:
+        return TeamRepo(session=self.session)
 
     async def commit(self) -> None:
         try:
