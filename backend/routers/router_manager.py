@@ -3,6 +3,8 @@ from container import container
 from game.schema import GameInitializeSchema
 from game.service import GameService
 from logger import Logger
+from member.schema import MemberCreateSchema
+from member.service import MemberService
 from team.schema import TeamCreateSchema
 from team.service import TeamService
 
@@ -28,4 +30,12 @@ class RouterManager:
         return await service.create(
             game_id=data.game_id,
             team_name=data.team_name
+        )
+
+    @classmethod
+    async def create_member(cls, data: MemberCreateSchema) -> IDSchema:
+        service: MemberService = await container.member_service()
+        return await service.create(
+            name=data.name,
+            team_id=data.team_id
         )
