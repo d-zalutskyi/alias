@@ -1,11 +1,18 @@
 from dataclasses import dataclass
 
+from propcache import cached_property
 from sqlalchemy.ext.asyncio import AsyncSession
+
+from game.repository import GameRepo
 
 
 @dataclass
 class RequestsRepo:
     session: AsyncSession
+
+    @cached_property
+    def game_repo(self) -> GameRepo:
+        return GameRepo(session=self.session)
 
     async def commit(self) -> None:
         try:

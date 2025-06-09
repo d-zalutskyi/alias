@@ -3,7 +3,7 @@ from typing import Generic, Any
 from sqlalchemy import select, update, Select, Result, Executable, ScalarResult, Update
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from common.enum import FindByEnum
+from common.enums import FindByEnum
 from common.types import ModelType
 
 

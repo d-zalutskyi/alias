@@ -1,5 +1,5 @@
 from typing import TypeVar
 
-from model import AliasBaseModel
+from common.model import AliasBaseModel
 
 ModelType: TypeVar = TypeVar("ModelType", bound=AliasBaseModel)
